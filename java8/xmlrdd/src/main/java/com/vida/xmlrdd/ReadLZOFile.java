@@ -1,5 +1,6 @@
 package com.vida.xmlrdd;
 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -26,12 +27,16 @@ public class ReadLZOFile {
 //    System.out.println("Next line is from the lzo file:");
 //    System.out.println(rdd.first());
 
+    Configuration configuration = new Job().getConfiguration();
+    configuration.set("io.compression.codecs",
+        "com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec,org.apache.hadoop.io.compress.SnappyCodec");
+
     JavaPairRDD<LongWritable, Text> rdd = sc.newAPIHadoopFile(
         "src/main/resources/test.csv.lzo",
         LzoTextInputFormat.class,
         LongWritable.class,
         Text.class,
-        new Job().getConfiguration());
+        configuration);
 
     System.out.println("LZO File");
     System.out.println(rdd.count());

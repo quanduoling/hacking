@@ -64,6 +64,12 @@
           <artifactId>cloud9</artifactId>
           <version>SNAPSHOT</version>
         </dependency>
+
+        <!--dependency>
+            <groupId>com.hadoop.compression</groupId>
+            <artifactId>hadoop-gpl-compression</artifactId>
+            <version>0.1.0</version>
+        </dependency-->
         <dependency>
             <groupId>org.anarres.lzo</groupId>
             <artifactId>lzo-hadoop</artifactId>
